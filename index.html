@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Медицинское приложение</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      box-sizing: border-box;
+      height: calc(100vh - 40px);
+      display: flex;
+      flex-direction: column;
+    }
+    nav {
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: flex-start;
+      gap: 10px;
+    }
+    nav a {
+      display: inline-block;
+      padding: 10px 20px;
+      text-decoration: none;
+      color: #fff;
+      background-color: #007bff;
+      border-radius: 5px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    nav a.active {
+      background-color: #0056b3;
+      font-weight: bold;
+    }
+    nav a:hover {
+      background-color: #0056b3;
+      transform: scale(1.05);
+    }
+    .section {
+      display: none;
+      flex: 1;
+      overflow-y: auto;
+    }
+    .section.active {
+      display: block;
+    }
+    .section-content {
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin-top: 20px;
+    }
+    .section-content h1 {
+      color: #333;
+    }
+    .section-content p {
+      color: #666;
+      line-height: 1.6;
+    }
+    .button, .support-button {
+      display: inline-block;
+      padding: 10px 20px;
+      text-decoration: none;
+      color: #fff;
+      background-color: #28a745;
+      border-radius: 5px;
+      font-size: 16px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      margin-top: 20px;
+    }
+    .button:hover, .support-button:hover {
+      background-color: #218838;
+      transform: scale(1.05);
+    }
+    .support-button {
+      background-color: #dc3545;
+    }
+    .support-button:hover {
+      background-color: #c82333;
+    }
+    .info-box {
+      padding: 20px;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      margin-bottom: 10px;
+    }
+    .info-box h2 {
+      color: #333;
+    }
+    .info-box p {
+      color: #666;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+    }
+    .form-group button {
+      padding: 10px 20px;
+      color: #fff;
+      background-color: #007bff;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .form-group button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <nav>
+      <a href="#" id="section1-link">Раздел 1</a>
+      <a href="#" id="section2-link">Раздел 2</a>
+      <a href="#" id="section3-link">Раздел 3</a>
+      <a href="#" id="section4-link">Раздел 4</a>
+    </nav>
+    <div id="section1" class="section active">
+      <div class="section-content" style="background-color: #f8d7da;">
+        <h1>Раздел 1</h1>
+        <p>Добро пожаловать в первый раздел нашего медицинского приложения. Здесь вы найдете информацию и инструменты для управления медицинскими данными.</p>
+        <div class="info-box">
+          <h2>Информация о заболевании</h2>
+          <p>Здесь вы найдете информацию о различных медицинских состояниях и заболеваниях.</p>
+        </div>
+        <div class="info-box">
+          <h2>Советы по здоровью</h2>
+          <p>Здесь вы найдете полезные советы по поддержанию здоровья и профилактике заболеваний.</p>
+        </div>
+        <a href="#" class="support-button" id="support-button">Техподдержка</a>
+      </div>
+    </div>
+    <div id="section2" class="section">
+      <div class="section-content">
+        <h1>Раздел 2</h1>
+        <p>Заполните вашу медицинскую книжку ниже:</p>
+        <form id="medical-form">
+          <div class="form-group">
+            <label for="name">ФИО:</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="birth-year">Год рождения:</label>
+            <input type="number" id="birth-year" name="birth-year" required>
+          </div>
+          <div class="form-group">
+            <label for="weight">Вес (кг):</label>
+            <input type="number" id="weight" name="weight" required>
+          </div>
+          <div class="form-group">
+            <label for="height">Рост (см):</label>
+            <input type="number" id="height" name="height" required>
+          </div>
+          <div class="form-group">
+            <label for="disease">Выберите заболевание:</label>
+            <select id="disease" name="disease" required>
+              <option value="">Выберите...</option>
+              <option value="flu">Грипп</option>
+              <option value="cold">Простуда</option>
+              <option value="diabetes">Диабет</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="description">Описание заболевания:</label>
+            <textarea id="description" name="description" rows="4"></textarea>
+          </div>
+          <div class="form-group">
+            <button type="submit">Сохранить</button>
+            <button type="button" id="edit-button">Редактировать</button>
+          </div>
+        </form>
+        <div id="form-errors" style="color: red;"></div>
+      </div>
+    </div>
+    <div id="section3" class="section">
+      <div class="section-content">
+        <h1>Раздел 3</h1>
+        <p>Информация о выбранном заболевании:</p>
+        <div id="disease-info" class="info-box">
+        </div>
+      </div>
+    </div>
+    <div id="section4" class="section">
+      <div class="section-content">
+        <h1>Раздел 4</h1>
+        <p>Запишитесь на прием к врачу:</p>
+        <form id="appointment-form">
+          <div class="form-group">
+            <label for="name">Ваше имя:</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Электронная почта:</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Телефон:</label>
+            <input type="tel" id="phone" name="phone" required>
+          </div>
+          <div class="form-group">
+            <label for="date">Дата записи:</label>
+            <input type="date" id="date" name="date" required>
+          </div>
+          <div class="form-group">
+            <label for="doctor-category">Категория врача:</label>
+            <select id="doctor-category" name="doctor-category" required>
+              <option value="">Выберите...</option>
+              <option value="therapist">Терапевт</option>
+              <option value="cardiologist">Кардиолог</option>
+              <option value="dermatologist">Дерматолог</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <button type="submit">Записаться</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const links = document.querySelectorAll('nav a');
+      const sections = document.querySelectorAll('.section');
+      const diseaseSelect = document.getElementById('disease');
+      const diseaseInfo = document.getElementById('disease-info');
+      
+      function showSection(sectionId) {
+        sections.forEach(section => {
+          section.classList.remove('active');
+        });
+        document.getElementById(sectionId).classList.add('active');
+        links.forEach(link => {
+          link.classList.remove('active');
+        });
+        document.getElementById(sectionId + '-link').classList.add('active');
+      }
+
+      links.forEach(link => {
+        link.addEventListener('click', function(event) {
+          event.preventDefault();
+          const sectionId = this.id.replace('-link', '');
+          showSection(sectionId);
+        });
+      });
+
+      document.getElementById('support-button').addEventListener('click', function() {
+        window.location.href = 'mailto:toppatida@gmail.com?subject=Техническая поддержка&body=Вам требуется помощь.';
+      });
+
+      document.getElementById('medical-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const selectedDisease = diseaseSelect.value;
+        const description = document.getElementById('description').value;
+
+        if (selectedDisease) {
+          updateDiseaseInfo(selectedDisease, description);
+        }
+        alert('Медицинская книжка сохранена!');
+      });
+
+      document.getElementById('edit-button').addEventListener('click', function() {
+        alert('Редактирование доступно в дальнейшем.');
+      });
+
+      function updateDiseaseInfo(disease, description) {
+        const info = {
+          flu: 'Грипп — это вирусное заболевание, которое может вызвать высокую температуру, кашель и боли в теле.',
+          cold: 'Простуда — это вирусное заболевание, которое вызывает насморк, боль в горле и кашель.',
+          diabetes: 'Диабет — это хроническое заболевание, которое влияет на уровень сахара в крови.'
+
+        };
+        diseaseInfo.innerHTML = `<h2>Информация о заболевании: ${disease.charAt(0).toUpperCase() + disease.slice(1)}</h2><p>${info[disease] || 'Нет информации о данном заболевании.'}</p>`;
+      }
+
+      document.getElementById('appointment-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        alert('Запись на прием выполнена!');
+      });
+    });
+  </script>
+</body>
+</html>
